@@ -41,10 +41,7 @@ insert into product_categories (name, type, description) values
 
 -- Branches
 insert into branches (name, location, phone, email, office_hours) values
-('Head Office','Malé, Maldives','+960 333 0000','info@cowrietraders.mv','Sun-Thu, 8:30 AM - 5:00 PM'),
-('Operations Office','Hulhumalé, Maldives','+960 333 0001','operations@cowrietraders.mv','Sun-Thu, 9:00 AM - 5:30 PM'),
-('Logistics Coordination','Malé Port Area, Maldives','+960 333 0002','logistics@cowrietraders.mv','Sun-Thu, 8:00 AM - 6:00 PM'),
-('International Sourcing Desk','Singapore / India / Sri Lanka / China','+65 0000 0000','sourcing@cowrietraders.mv','Mon-Fri, 9:00 AM - 6:00 PM');
+('Cowrie Traders','H.isles residence, Male'', Male''; 20027','+960 7912865','cowrietraders@everyones.com.mv','Sun-Thu, 8:30 AM - 5:00 PM');
 
 -- Freight services
 insert into freight_services (name, description) values
