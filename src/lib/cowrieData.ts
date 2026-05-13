@@ -115,6 +115,7 @@ export const CUSTOMER_SERVICE_TOPICS = [
 
 export const BRANCHES_FALLBACK: Branch[] = [
   { id: '1', name: CONTACT_DETAILS.companyName, location: CONTACT_DETAILS.addressLines.join(', '), phone: CONTACT_DETAILS.phone, email: CONTACT_DETAILS.email, office_hours: 'Sun–Thu, 8:30 AM – 5:00 PM' },
+  { id: '2', name: "Branch Office, EMIR X Pvt Ltd", location: 'Office: 10098, Halaveli magu, Hulhumale phase 1, Rep. of Maldives', phone: '+960 3306778, +960 9403155', email: CONTACT_DETAILS.email, office_hours: 'Sun–Thu, 8:30 AM – 5:00 PM' },
 ];
 
 // Data loaders — fetch from Supabase, fall back gracefully
