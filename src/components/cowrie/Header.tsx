@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
-import { IMAGES } from '@/lib/cowrieData';
+import { CONTACT_DETAILS, IMAGES } from '@/lib/cowrieData';
 
 type Page = 'home' | 'import' | 'export' | 'products' | 'service' | 'freight' | 'contact';
 
@@ -30,8 +30,8 @@ export default function Header({ page, setPage }: { page: Page; setPage: (p: Pag
         <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
           <span className="opacity-90">Connecting the Maldives to global trade since 2014</span>
           <div className="flex items-center gap-5">
-            <span className="flex items-center gap-1.5"><Phone size={12} /> +960 333 0000</span>
-            <span>info@cowrietraders.mv</span>
+            <a href={CONTACT_DETAILS.phoneHref} className="flex items-center gap-1.5 hover:underline"><Phone size={12} /> {CONTACT_DETAILS.phone}</a>
+            <a href={CONTACT_DETAILS.emailHref} className="hover:underline">{CONTACT_DETAILS.email}</a>
           </div>
         </div>
       </div>

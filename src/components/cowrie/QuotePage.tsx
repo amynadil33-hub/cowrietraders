@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  fetchCategories, fetchCountries, fetchProducts,
+  CONTACT_DETAILS, fetchCategories, fetchCountries, fetchProducts,
   submitQuoteRequest, Category, Country, Product, CUSTOMER_SERVICE_TOPICS,
 } from '@/lib/cowrieData';
 import { supabase } from '@/lib/supabase';
@@ -302,8 +302,8 @@ export default function QuotePage() {
             <h3 className="font-extrabold text-[#1F2A37] mb-2">Need help right now?</h3>
             <p className="text-sm text-slate-700 mb-4">Reach our customer service team by phone, WhatsApp or email.</p>
             <div className="space-y-2 text-sm">
-              <a href="tel:+9603330000" className="flex items-center gap-2 text-[#0F7F78] font-semibold hover:underline"><MessageCircle size={14} /> +960 333 0000</a>
-              <a href="mailto:info@cowrietraders.mv" className="flex items-center gap-2 text-[#0F7F78] font-semibold hover:underline"><Mail size={14} /> info@cowrietraders.mv</a>
+              <a href={CONTACT_DETAILS.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#0F7F78] font-semibold hover:underline"><MessageCircle size={14} /> WhatsApp {CONTACT_DETAILS.phone}</a>
+              <a href={CONTACT_DETAILS.emailHref} className="flex items-center gap-2 text-[#0F7F78] font-semibold hover:underline"><Mail size={14} /> {CONTACT_DETAILS.email}</a>
             </div>
           </div>
         </aside>

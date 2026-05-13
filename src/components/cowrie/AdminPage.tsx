@@ -158,7 +158,7 @@ function Login() {
                 type="email" required value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#1BA098]"
-                placeholder="admin@cowrietraders.mv"
+                placeholder="cowrietraders@everyones.com.mv"
               />
             </div>
             <div>

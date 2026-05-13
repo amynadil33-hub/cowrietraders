@@ -66,6 +66,17 @@ export type Branch = {
   office_hours: string;
 };
 
+
+export const CONTACT_DETAILS = {
+  companyName: 'Cowrie Traders',
+  addressLines: ["H.isles residence, Male'", "Male'; 20027"],
+  phone: '+960 7912865',
+  phoneHref: 'tel:+9607912865',
+  whatsappUrl: 'https://wa.me/9607912865',
+  email: 'cowrietraders@everyones.com.mv',
+  emailHref: 'mailto:cowrietraders@everyones.com.mv',
+};
+
 export const UNIT_OPTIONS = ['kg', 'carton', 'ton', 'box', 'container', 'piece'];
 
 export const SOURCING_COUNTRIES = [
@@ -103,10 +114,7 @@ export const CUSTOMER_SERVICE_TOPICS = [
 ];
 
 export const BRANCHES_FALLBACK: Branch[] = [
-  { id: '1', name: 'Head Office', location: 'Malé, Maldives', phone: '+960 333 0000', email: 'info@cowrietraders.mv', office_hours: 'Sun–Thu, 8:30 AM – 5:00 PM' },
-  { id: '2', name: 'Operations Office', location: 'Hulhumalé, Maldives', phone: '+960 333 0001', email: 'operations@cowrietraders.mv', office_hours: 'Sun–Thu, 9:00 AM – 5:30 PM' },
-  { id: '3', name: 'Logistics Coordination', location: 'Malé Port Area, Maldives', phone: '+960 333 0002', email: 'logistics@cowrietraders.mv', office_hours: 'Sun–Thu, 8:00 AM – 6:00 PM' },
-  { id: '4', name: 'International Sourcing Desk', location: 'Singapore / India / Sri Lanka / China', phone: '+65 0000 0000', email: 'sourcing@cowrietraders.mv', office_hours: 'Mon–Fri, 9:00 AM – 6:00 PM' },
+  { id: '1', name: CONTACT_DETAILS.companyName, location: CONTACT_DETAILS.addressLines.join(', '), phone: CONTACT_DETAILS.phone, email: CONTACT_DETAILS.email, office_hours: 'Sun–Thu, 8:30 AM – 5:00 PM' },
 ];
 
 // Data loaders — fetch from Supabase, fall back gracefully

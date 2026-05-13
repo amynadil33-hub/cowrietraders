@@ -1,38 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Branch, fetchBranches, BRANCHES_FALLBACK } from '@/lib/cowrieData';
+import React, { useState } from 'react';
+import { CONTACT_DETAILS, BRANCHES_FALLBACK } from '@/lib/cowrieData';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 
 export default function ContactPage() {
-  const [branches, setBranches] = useState<Branch[]>(BRANCHES_FALLBACK);
+  const branches = BRANCHES_FALLBACK;
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
-  useEffect(() => {
-    fetchBranches().then(setBranches);
-  }, []);
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.email.includes('@') || !form.name) return;
     setSending(true);
-    try {
-      await fetch('https://famous.ai/api/crm/6a02246ac2e566a83616a38d/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: form.email,
-          name: form.name,
-          source: 'contact-form',
-          tags: ['contact-form', 'cowrie-traders'],
-        }),
-      });
-      setSent(true);
-    } catch {
-      setSent(true);
-    } finally {
-      setSending(false);
-    }
+    const subject = encodeURIComponent(form.subject || 'Website enquiry');
+    const body = encodeURIComponent(
+      `Name: ${form.name}
+Email: ${form.email}
+
+${form.message}`
+    );
+    window.location.href = `${CONTACT_DETAILS.emailHref}?subject=${subject}&body=${body}`;
+    setSent(true);
+    setSending(false);
   };
 
   return (
@@ -57,7 +47,7 @@ export default function ContactPage() {
                   <CheckCircle2 className="text-emerald-600" size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-[#1F2A37] mb-2">Message received</h3>
-                <p className="text-slate-600">Thank you for contacting Cowrie Traders. We will be in touch shortly.</p>
+                <p className="text-slate-600">Thank you for contacting Cowrie Traders. Your email client should open a message to {CONTACT_DETAILS.email}.</p>
               </div>
             ) : (
               <form onSubmit={submit} className="space-y-4">
@@ -78,16 +68,16 @@ export default function ContactPage() {
             <div className="bg-gradient-to-br from-[#0c1e26] to-[#0F7F78] rounded-2xl p-7 text-white">
               <h3 className="font-extrabold text-lg mb-4">Company contact</h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-start gap-3"><MapPin size={16} className="text-[#F4E4C1] mt-0.5" /> Malé, Republic of Maldives</li>
-                <li className="flex items-start gap-3"><Phone size={16} className="text-[#F4E4C1] mt-0.5" /> +960 333 0000</li>
-                <li className="flex items-start gap-3"><Mail size={16} className="text-[#F4E4C1] mt-0.5" /> info@cowrietraders.mv</li>
+                <li className="flex items-start gap-3"><MapPin size={16} className="text-[#F4E4C1] mt-0.5 shrink-0" /> <span>{CONTACT_DETAILS.addressLines.join(', ')}</span></li>
+                <li className="flex items-start gap-3"><Phone size={16} className="text-[#F4E4C1] mt-0.5" /> <a href={CONTACT_DETAILS.phoneHref} className="hover:underline">{CONTACT_DETAILS.phone}</a></li>
+                <li className="flex items-start gap-3"><Mail size={16} className="text-[#F4E4C1] mt-0.5" /> <a href={CONTACT_DETAILS.emailHref} className="break-all hover:underline">{CONTACT_DETAILS.email}</a></li>
                 <li className="flex items-start gap-3"><Clock size={16} className="text-[#F4E4C1] mt-0.5" /> Sun–Thu, 8:30 AM – 5:00 PM</li>
               </ul>
             </div>
             <div className="bg-[#F4E4C1] rounded-2xl p-7">
               <h3 className="font-extrabold text-lg text-[#0F7F78] mb-2">WhatsApp support</h3>
               <p className="text-sm text-slate-700 mb-3">Chat with our customer service team directly via WhatsApp.</p>
-              <a href="https://wa.me/9603330000" target="_blank" rel="noopener noreferrer" className="inline-block px-5 py-2.5 rounded-lg bg-[#0F7F78] text-white font-semibold text-sm hover:bg-[#0c1e26] transition-colors">
+              <a href={CONTACT_DETAILS.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-5 py-2.5 rounded-lg bg-[#0F7F78] text-white font-semibold text-sm hover:bg-[#0c1e26] transition-colors">
                 Open WhatsApp
               </a>
             </div>

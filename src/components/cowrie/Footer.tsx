@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Send } from 'lucide-react';
+import { CONTACT_DETAILS } from '@/lib/cowrieData';
 import type { Page } from './Header';
 
 export default function Footer({ setPage }: { setPage: (p: Page) => void }) {
@@ -83,19 +84,17 @@ export default function Footer({ setPage }: { setPage: (p: Page) => void }) {
         <div>
           <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Branches</h4>
           <ul className="space-y-3 text-sm text-slate-400">
-            <li><div className="text-white font-semibold">Head Office</div>Malé, Maldives</li>
-            <li><div className="text-white font-semibold">Operations</div>Hulhumalé, Maldives</li>
-            <li><div className="text-white font-semibold">Logistics</div>Malé Port Area</li>
-            <li><div className="text-white font-semibold">Sourcing Desk</div>Singapore liaison</li>
+            <li><div className="text-white font-semibold">{CONTACT_DETAILS.companyName}</div>{CONTACT_DETAILS.addressLines[0]}</li>
+            <li><div className="text-white font-semibold">Postal Code</div>{CONTACT_DETAILS.addressLines[1]}</li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Contact</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex items-start gap-2"><MapPin size={15} className="text-[#1BA098] mt-0.5 shrink-0" /><span>Malé, Republic of Maldives</span></li>
-            <li className="flex items-start gap-2"><Phone size={15} className="text-[#1BA098] mt-0.5 shrink-0" /><span>+960 333 0000</span></li>
-            <li className="flex items-start gap-2"><Mail size={15} className="text-[#1BA098] mt-0.5 shrink-0" /><span>info@cowrietraders.mv</span></li>
+            <li className="flex items-start gap-2"><MapPin size={15} className="text-[#1BA098] mt-0.5 shrink-0" /><span>{CONTACT_DETAILS.addressLines.join(', ')}</span></li>
+            <li className="flex items-start gap-2"><Phone size={15} className="text-[#1BA098] mt-0.5 shrink-0" /><a href={CONTACT_DETAILS.phoneHref} className="hover:text-[#1BA098]">{CONTACT_DETAILS.phone}</a></li>
+            <li className="flex items-start gap-2"><Mail size={15} className="text-[#1BA098] mt-0.5 shrink-0" /><a href={CONTACT_DETAILS.emailHref} className="hover:text-[#1BA098] break-all">{CONTACT_DETAILS.email}</a></li>
           </ul>
           <div className="flex gap-3 mt-5">
             {[Facebook, Linkedin, Instagram].map((Icon, i) => (
